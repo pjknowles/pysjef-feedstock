@@ -19,7 +19,7 @@ build:
     - ctest -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command' || ctest -j 1 --rerun-failed --output-on-failure  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix] 
-  number: 0
+  number: 1
 
 requirements:
   build:
