@@ -14,7 +14,8 @@ build:
   script:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [linux]
-    - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx]
+    - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
+    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64]
     - cmake --build cmake-build -t install  # [unix]
     - ctest -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command' || ctest -VV -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command'  # [x86]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
