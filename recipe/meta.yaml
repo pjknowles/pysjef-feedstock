@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.24.0" %}
+{% set version = "1.24.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: 52fbde358acba17d70c4fa2828610352aa4ca05d22a344e167dfc614928d6f18
+  sha256: d7754697c3cdcbe13b831525047753616c14889992024d9a1dfe4891363e21c7
 
 build:
-  skip: True  # [win]
+  skip: true  # [win]
   script:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [linux]
@@ -20,7 +20,7 @@ build:
     - ctest -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command' || ctest -VV -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command'  # [x86]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix] 
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -57,7 +57,7 @@ test:
 about:
   home: https://github.com/molpro/sjef
   summary: |
-        Python Simple Job Execution Framework (Pysjef) is pronounced pie-chef
+    Python Simple Job Execution Framework (Pysjef) is pronounced pie-chef
   description: A library that supports the running of any program asynchronously either locally, directly on a remote machine, or via a batch queueing system
   license: MIT
   license_family: MIT
