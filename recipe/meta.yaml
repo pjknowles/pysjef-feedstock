@@ -67,5 +67,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - pjknowles
     - molpro-owner
     - nick-wilson
