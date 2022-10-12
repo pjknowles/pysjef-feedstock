@@ -10,16 +10,13 @@ source:
   sha256: d7754697c3cdcbe13b831525047753616c14889992024d9a1dfe4891363e21c7
 
 build:
-  skip: true  # [win]
   script:
-    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
-    - cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [linux]
+    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
-    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64]
-    - cmake --build cmake-build -t install  # [unix]
-    - ctest -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command' || ctest -VV -j 1 --test-dir cmake-build -E 'Shell.remote.*|test-Command'  # [x86]
-    - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
-    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix] 
+    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux or win]
+    - cmake --build cmake-build -t install
+    - cd pysjef && {{ PYTHON }} -m pip install . -vv
+    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)
   number: 0
 
 requirements:
