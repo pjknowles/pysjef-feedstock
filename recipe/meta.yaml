@@ -10,6 +10,7 @@ source:
   sha256: 5a1970feb8a5cf3619f29b45176f7a54a8d0587a7240d7efb434d5cd44ff2845
 
 build:
+  skip: True  # [win]
   script:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
