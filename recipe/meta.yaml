@@ -18,7 +18,7 @@ build:
     - cmake --build cmake-build -t install
     - cd pysjef && {{ PYTHON }} -m pip install . -vv
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -39,7 +39,7 @@ requirements:
     - python
     - boost-cpp
     - lxml >=4.0
-    - rsync
+    - rsync  # [not win]
     - regex
     - numpy
 
