@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.24.1" %}
+{% set version = "1.24.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,10 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: d7754697c3cdcbe13b831525047753616c14889992024d9a1dfe4891363e21c7
+  sha256: 5a1970feb8a5cf3619f29b45176f7a54a8d0587a7240d7efb434d5cd44ff2845
 
 build:
+  skip: True  # [win]
   script:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
