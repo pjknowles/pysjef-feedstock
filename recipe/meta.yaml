@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.24.2" %}
+{% set version = "1.25.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: 5a1970feb8a5cf3619f29b45176f7a54a8d0587a7240d7efb434d5cd44ff2845
+  sha256: 2e3647b1b3b74c8d52832f112ae4d58fccd9935c8416198903b824da2d919911
 
 build:
-  skip: True  # [win]
+  skip: true  # [win]
   script:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
@@ -18,7 +18,7 @@ build:
     - cmake --build cmake-build -t install
     - cd pysjef && {{ PYTHON }} -m pip install . -vv
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)
-  number: 1
+  number: 0
 
 requirements:
   build:
