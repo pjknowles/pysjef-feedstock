@@ -11,7 +11,7 @@ source:
 
 build:
   script:
-    - build.bat {{ version }}  # [win]
+    - bld.bat {{ version }}  # [win]
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
     - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
