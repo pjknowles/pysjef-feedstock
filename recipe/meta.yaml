@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.25.1" %}
+{% set version = "1.26.0" %}
 
 package:
   name: {{ name|lower }}
@@ -10,14 +10,14 @@ source:
   sha256: ef99a02232d9c19665a3ade29794faba850efcd47712554e5341d5496b56c3fc
 
 build:
-  skip: true  # [win]
   script:
-    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py
+    - build.bat {{ version }}  # [win]
+    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
-    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux or win]
-    - cmake --build cmake-build -t install
-    - cd pysjef && {{ PYTHON }} -m pip install . -vv
-    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)
+    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
+    - cmake --build cmake-build -t install  # [unix]
+    - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
+    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
   number: 1
 
 requirements:
