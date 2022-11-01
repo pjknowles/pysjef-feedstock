@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.25.1" %}
+{% set version = "1.26.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,18 +7,22 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: ef99a02232d9c19665a3ade29794faba850efcd47712554e5341d5496b56c3fc
+  sha256: f832efc1619561aa3220730606bbd0cd33fe2daffd5044fea7d8496c69b73284
 
 build:
-  skip: true  # [win]
   script:
-    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py
+    - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
+    - cmake -LAH -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%PREFIX% -DCMAKE_INSTALL_INCLUDEDIR=%PREFIX%\include  -DCMAKE_INSTALL_LIBDIR=%PREFIX%\Library\lib -B cmake-build .  # [win]
+    - cmake --build cmake-build --config Release --target install  # [win]
+    - cd pysjef  # [win]
+    - {{ PYTHON }} -m pip install . -vv  # [win]
     - CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY -DBOOST_ASIO_DISABLE_STD_ALIGNED_ALLOC" cmake -B cmake-build . -DCMAKE_INSTALL_PREFIX=$PREFIX  # [osx and x86]
-    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux or win]
-    - cmake --build cmake-build -t install
-    - cd pysjef && {{ PYTHON }} -m pip install . -vv
-    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)
-  number: 1
+    - cmake -B cmake-build . -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$PREFIX  # [arm64 or linux]
+    - cmake --build cmake-build -t install  # [unix]
+    - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
+    - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
+    - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
+  number: 0
 
 requirements:
   build:
