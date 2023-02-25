@@ -1,11 +1,11 @@
-About pysjef
-============
+About pysjef-feedstock
+======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pysjef-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/molpro/sjef
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pysjef-feedstock/blob/main/LICENSE.txt)
 
 Summary: Python Simple Job Execution Framework (Pysjef) is pronounced pie-chef
 
