@@ -28,7 +28,7 @@ requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython=0.29.36                                 # [build_platform != target_platform]
+    - cython =0.29.36                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.14
@@ -38,7 +38,7 @@ requirements:
     - pip
     - boost-cpp
     - pugixml >=1.10
-    - cython=0.29.36
+    - cython =0.29.36
   run:
     - python
     - boost-cpp
