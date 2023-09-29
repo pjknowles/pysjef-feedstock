@@ -13,8 +13,6 @@ build:
   script:
     - echo __version__ = "{{ version }}" > pysjef/pysjef/_version.py  # [win]
     - env
-    - echo BUILD_PREFIX=$BUILD_PREFIX CONDA_PREFIX=$CONDA_PREFIX
-    - ls -lR $BUILD_PREFIX
     - export CC=$CONDA_PREFIX/bin/cc CXX=$CONDA_PREFIX/bin/c++
     - cmake -LAH -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=%PREFIX% -DCMAKE_INSTALL_INCLUDEDIR=%PREFIX%\include  -DCMAKE_INSTALL_LIBDIR=%PREFIX%\Library\lib -B cmake-build .  # [win]
     - cmake --build cmake-build --config Release --target install  # [win]
