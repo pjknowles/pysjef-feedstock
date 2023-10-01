@@ -46,6 +46,7 @@ requirements:
     - rsync  # [not win]
     - regex
     - numpy
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
 
 test:
   imports:
