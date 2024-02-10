@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.38.2" %}
+{% set version = "1.38.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: 2e18272a37380be686df232f21596f2ed03625f383e328493d867ff21f147b6b
+  sha256: ae3f8e7375b44a0a78ada2dee98079aac09c6b53da3b6b7c6479ff0ec0e4e388
 
 build:
   script:
