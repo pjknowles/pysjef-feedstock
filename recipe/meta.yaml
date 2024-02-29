@@ -33,6 +33,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
+    - m2-base # [win]
   host:
     - python
     - pip
@@ -46,6 +47,7 @@ requirements:
     - regex
     - numpy
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
+    - m2-base # [win]
 
 test:
   imports:
@@ -64,11 +66,10 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  doc_url: https://molpro.gitlab.io/pysjef
+  doc_url: https://molpro.github.io/pysjef
   dev_url: https://github.com/molpro/sjef
 
 extra:
   recipe-maintainers:
     - pjknowles
     - molpro-owner
-    - nick-wilson
