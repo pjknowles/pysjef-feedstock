@@ -33,7 +33,6 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
-    - m2-base # [win]
   host:
     - python
     - pip
