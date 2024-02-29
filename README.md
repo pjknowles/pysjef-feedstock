@@ -12,7 +12,7 @@ Summary: Python Simple Job Execution Framework (Pysjef) is pronounced pie-chef
 
 Development: https://github.com/molpro/sjef
 
-Documentation: https://molpro.gitlab.io/pysjef
+Documentation: https://molpro.github.io/pysjef
 
 A library that supports the running of any program asynchronously either locally, directly on a remote machine, or via a batch queueing system
 
@@ -324,6 +324,5 @@ Feedstock Maintainers
 =====================
 
 * [@molpro-owner](https://github.com/molpro-owner/)
-* [@nick-wilson](https://github.com/nick-wilson/)
 * [@pjknowles](https://github.com/pjknowles/)
 
