@@ -44,7 +44,7 @@ requirements:
     - lxml >=4.0
     - rsync  # [not win]
     - regex
-    - numpy
+    - numpy >=1.17
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
     - m2-base  # [win]
 
