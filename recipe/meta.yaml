@@ -22,7 +22,7 @@ build:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -30,6 +30,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - cython >=3.0                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake >=3.14
     - make
@@ -45,7 +46,6 @@ requirements:
     - rsync  # [not win]
     - regex
     - numpy >=1.17
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
     - m2-base  # [win]
 
 test:
