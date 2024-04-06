@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.38.30" %}
+{% set version = "1.38.31" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: 0754fdec23c4b8ad6e8e7582afc6a21cf83c0c396f18b410d36906f775d3b856
+  sha256: 31d7c1a4efc41972c21c2ac76a0fe41412d558c79243dfa6e9b0576900028bfc
 
 build:
   script:
@@ -22,7 +22,7 @@ build:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 1
+  number: 0
 
 requirements:
   build:
