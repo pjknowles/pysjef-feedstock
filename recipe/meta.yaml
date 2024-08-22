@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.38.35"  %}
+{% set version = "1.38.35" %}
 
 package:
   name: {{ name|lower }}
