@@ -1,5 +1,5 @@
 {% set name = "pysjef" %}
-{% set version = "1.38.34" %}
+{% set version = "1.40.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/molpro/sjef/archive/refs/tags//{{ version }}.tar.gz
-  sha256: f395f3cb90f3a5542c8e8bff643283f193cc1f78061231822e87544bfe8ef7fb
+  sha256: 8c1987fd1a69fe6c1589811855355e83253fe1e47cdf75a4286082e04776d378
 
 build:
   script:
@@ -22,7 +22,7 @@ build:
     - echo __version__ = \"{{ version }}\" > pysjef/pysjef/_version.py  # [unix]
     - cd pysjef && {{ PYTHON }} -m pip install . -vv  # [unix]
     - rm -f $(grep -v /bin/sjef ../cmake-build/install_manifest.txt)  # [unix]
-  number: 0
+  number: 2
 
 requirements:
   build:
@@ -40,6 +40,7 @@ requirements:
     - libboost-devel
     - pugixml >=1.10
     - cython >=3.0
+    - setuptools
   run:
     - python
     - lxml >=4.0
